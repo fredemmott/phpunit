@@ -92,7 +92,7 @@ class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
     protected $ignoreCase = FALSE;
 
     /**
-     * @var PHPUnit_Framework_ComparisonFailure
+     * @var SebastianBergmann\Comparator\ComparisonFailure
      */
     protected $lastFailure;
 
@@ -149,7 +149,7 @@ class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
      */
     public function evaluate($other, $description = '', $returnResult = FALSE)
     {
-        $comparatorFactory = PHPUnit_Framework_ComparatorFactory::getDefaultInstance();
+        $comparatorFactory = new SebastianBergmann\Comparator\Factory;
 
         try {
             $comparator = $comparatorFactory->getComparatorFor(
@@ -165,7 +165,7 @@ class PHPUnit_Framework_Constraint_IsEqual extends PHPUnit_Framework_Constraint
             );
         }
 
-        catch (PHPUnit_Framework_ComparisonFailure $f) {
+        catch (SebastianBergmann\Comparator\ComparisonFailure $f) {
             if ($returnResult) {
                 return FALSE;
             }
